@@ -1,25 +1,40 @@
-# Project Title
+# JGA-OS To-Do List
 
-## Launching the System
+A lightweight, zero-dependency to-do list web application built with vanilla HTML, CSS, and JavaScript.  
+Tasks are automatically saved to the browser's **localStorage** so they persist across page refreshes.
 
-To launch the system, follow the steps below:
+## Features
 
-1. **Clone the Repository**:  
-   ````bash  
-   git clone https://github.com/<OWNER>/jga-os.git  
-   ````
+- ✅ **Add** new tasks with a single keystroke or button click
+- ✏️ **Edit** existing tasks via a modal dialog
+- 🗑 **Delete** individual tasks
+- ☑️ **Mark tasks as complete** with a checkbox
+- 🔍 **Filter** tasks by All / Active / Completed
+- 🧹 **Clear all completed** tasks in one click
+- 💾 **localStorage persistence** – tasks survive page reloads
+- ♿ Accessible markup with ARIA labels
 
-2. **Navigate to the Project Directory**:  
-   ````bash  
-   cd jga-os  
-   ````
+## Getting Started
 
-3. **Initial Setup**:  
-   - Ensure you have all the dependencies installed.
-   - [List any specific setup instructions or installations needed here]
+No build step or server required – just open `index.html` in any modern browser.
 
-4. **Run the System**:  
-   - [Provide command or instructions to run your system]
+```bash
+git clone https://github.com/jgaos2026-gif/jga-os.git
+cd jga-os
+# open index.html in your browser
+open index.html        # macOS
+xdg-open index.html    # Linux
+start index.html       # Windows
+```
+
+## File Structure
+
+```
+jga-os/
+├── index.html   # Application markup
+├── style.css    # Styling
+└── app.js       # Task logic & localStorage integration
+```
 
 ## Constitution
 

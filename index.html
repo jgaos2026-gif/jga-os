@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JGA-OS To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📝 To-Do List</h1>
+
+    <form id="task-form" aria-label="Add new task">
+      <input
+        type="text"
+        id="task-input"
+        placeholder="Add a new task…"
+        aria-label="New task"
+        autocomplete="off"
+        maxlength="200"
+      />
+      <button type="submit" id="add-btn">Add</button>
+    </form>
+
+    <div class="filters" role="group" aria-label="Filter tasks">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="completed">Completed</button>
+    </div>
+
+    <ul id="task-list" aria-label="Task list"></ul>
+
+    <div class="footer">
+      <span id="task-count"></span>
+      <button id="clear-completed-btn">Clear Completed</button>
+    </div>
+  </div>
+
+  <!-- Edit modal -->
+  <div id="edit-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-content">
+      <h2 id="modal-title">Edit Task</h2>
+      <input type="text" id="edit-input" aria-label="Edit task text" maxlength="200" />
+      <div class="modal-actions">
+        <button id="save-edit-btn">Save</button>
+        <button id="cancel-edit-btn" class="secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div id="modal-overlay" class="modal-overlay" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
