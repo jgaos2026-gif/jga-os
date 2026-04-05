@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JGA-OS To-Do List</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <h1>To-Do List</h1>
+    </header>
+
+    <form id="todo-form" aria-label="Add a new to-do item" novalidate>
+      <div class="input-row">
+        <label for="todo-input" class="visually-hidden">New to-do item</label>
+        <input
+          type="text"
+          id="todo-input"
+          class="todo-input"
+          placeholder="What needs to be done?"
+          aria-required="true"
+          autocomplete="off"
+          maxlength="200"
+        />
+        <button type="submit" class="btn btn-primary" aria-label="Add to-do item">Add</button>
+      </div>
+      <p id="input-error" class="error-msg" role="alert" aria-live="polite"></p>
+    </form>
+
+    <section aria-label="To-do filters" class="filters">
+      <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter-btn" data-filter="active" aria-pressed="false">Active</button>
+      <button class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
+    </section>
+
+    <ul id="todo-list" class="todo-list" aria-label="To-do items" aria-live="polite">
+    </ul>
+
+    <footer class="footer" id="footer" hidden>
+      <span id="items-left" class="items-left"></span>
+      <button id="clear-completed" class="btn btn-danger" aria-label="Clear completed items">
+        Clear Completed
+      </button>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
