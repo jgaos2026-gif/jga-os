@@ -47,10 +47,10 @@ The app is a zero-dependency static site — no build step needed.
 ### GitHub Pages (recommended)
 
 1. Go to **Settings → Pages** in your fork
-2. Source: **Deploy from a branch** → `main` → `/` (root) → **Save**
-3. Live at `https://<your-username>.github.io/jga-os/` within ~1 minute
+2. Source: **GitHub Actions** → **Save**
+3. Live at `https://jgaos2026-gif.github.io/jga-os/` within ~1 minute after the next push
 
-A [GitHub Actions workflow](.github/workflows/pages.yml) is included so pushes to `main` deploy automatically.
+The included [GitHub Actions workflow](.github/workflows/pages.yml) runs automatically on every push to `main` — no manual deploy steps needed.
 
 ### Netlify
 
@@ -73,12 +73,20 @@ Or manually: import the repo, choose framework **Other**, deploy.
 | [js.org](https://js.org) | `yourname.js.org` | Submit a PR to their repo |
 | [Freenom](https://freenom.com) | `.tk .ml .ga .cf .gq` | Register free, add CNAME |
 
-To use a custom domain with GitHub Pages: edit `CNAME` in the repo root with your domain, then set it in **Settings → Pages → Custom domain**.
+To use a custom domain with GitHub Pages: add your domain to the `CNAME` file in the repo root (one bare domain per line, e.g. `jga-os.is-a.dev`), then set it in **Settings → Pages → Custom domain**.
 
 ## Constitution
 
-- [Outline the constitution or fundamental principles of your project here]
+JGA-OS is guided by these core principles:
+
+- **Zero dependencies** — no frameworks, no bundlers, no build step; pure HTML, CSS, and JavaScript only
+- **Privacy first** — all data lives in the user's own browser via `localStorage`; nothing is sent to a server
+- **Accessible by default** — every interactive element has ARIA labels and keyboard support
+- **Deployable anywhere** — the app is a static site and works on GitHub Pages, Netlify, Vercel, or directly from the file system
+- **Open and free** — MIT-licensed, free to use, fork, and adapt
 
 ## Additional Information
 
-- For any issues or further assistance, please refer to the [documentation](LINK_TO_DOCUMENTATION) or contact the repository owner.
+- Live site: [https://jgaos2026-gif.github.io/jga-os/](https://jgaos2026-gif.github.io/jga-os/)
+- Source code: [https://github.com/jgaos2026-gif/jga-os](https://github.com/jgaos2026-gif/jga-os)
+- For bugs or feature requests, please [open an issue](https://github.com/jgaos2026-gif/jga-os/issues).
