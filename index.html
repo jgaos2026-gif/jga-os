@@ -19,22 +19,27 @@
 
     <main class="main-area">
       <section class="dock">
-        <button class="dock-icon active">Home</button>
-        <button class="dock-icon">About</button>
-        <button class="dock-icon">Apps</button>
+        <button class="dock-icon" data-tab="home">Home</button>
+        <button class="dock-icon" data-tab="about">About</button>
+        <button class="dock-icon" data-tab="apps">Apps</button>
       </section>
 
       <section class="window">
-        <h1>Welcome to jga-os</h1>
-        <p>A minimal web desktop by jaysgraphicarts-ai.</p>
-        <p>Edit this text to make it your own OS concept.</p>
+        <!-- content injected by WindowManager -->
       </section>
     </main>
 
     <footer class="taskbar">
       <span class="taskbar-title">jga-os</span>
-      <span class="taskbar-status">Ready</span>
+      <div class="taskbar-right">
+        <span class="taskbar-clock" aria-live="polite"></span>
+        <span class="taskbar-status" aria-live="polite">Loading…</span>
+      </div>
     </footer>
+
+    <div class="notifications" aria-live="polite" aria-atomic="false"></div>
   </div>
+
+  <script src="app.js"></script>
 </body>
 </html>

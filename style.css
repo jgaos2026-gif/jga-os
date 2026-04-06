@@ -130,9 +130,47 @@ body {
   letter-spacing: 0.18em;
 }
 
+.taskbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.taskbar-clock {
+  font-variant-numeric: tabular-nums;
+}
+
 .taskbar-status {
   opacity: 0.9;
 }
+
+/* ── Notifications ── */
+.notifications {
+  position: fixed;
+  bottom: 3.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.notification {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #f1f5f9;
+  backdrop-filter: blur(10px);
+  opacity: 0.95;
+  pointer-events: auto;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.notification--info    { background: rgba(37, 99, 235, 0.75); }
+.notification--success { background: rgba(21, 128, 61, 0.75); }
+.notification--warning { background: rgba(180, 83, 9, 0.8); }
+.notification--error   { background: rgba(185, 28, 28, 0.8); }
 
 @media (max-width: 720px) {
   .main-area {
