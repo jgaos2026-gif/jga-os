@@ -2,39 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>jga-os</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JGA-OS To-Do List</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="desktop">
-    <header class="top-bar">
-      <div class="logo">jga-os</div>
-      <div class="top-actions">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-      </div>
+  <div class="container" role="main">
+    <header>
+      <h1>To-Do List</h1>
     </header>
 
-    <main class="main-area">
-      <section class="dock">
-        <button class="dock-icon active">Home</button>
-        <button class="dock-icon">About</button>
-        <button class="dock-icon">Apps</button>
-      </section>
+    <form id="todo-form" aria-label="Add a new to-do item" novalidate>
+      <div class="input-row">
+        <label for="todo-input" class="visually-hidden">New to-do item</label>
+        <input
+          type="text"
+          id="todo-input"
+          class="todo-input"
+          placeholder="What needs to be done?"
+          aria-required="true"
+          autocomplete="off"
+          maxlength="200"
+        />
+        <button type="submit" class="btn btn-primary" aria-label="Add to-do item">Add</button>
+      </div>
+      <p id="input-error" class="error-msg" role="alert" aria-live="polite"></p>
+    </form>
 
-      <section class="window">
-        <h1>Welcome to jga-os</h1>
-        <p>A minimal web desktop by jaysgraphicarts-ai.</p>
-        <p>Edit this text to make it your own OS concept.</p>
-      </section>
-    </main>
+    <section aria-label="To-do filters" class="filters">
+      <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="filter-btn" data-filter="active" aria-pressed="false">Active</button>
+      <button type="button" class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
+    </section>
 
-    <footer class="taskbar">
-      <span class="taskbar-title">jga-os</span>
-      <span class="taskbar-status">Ready</span>
+    <ul id="todo-list" class="todo-list" aria-label="To-do items">
+    </ul>
+
+    <footer class="footer" id="footer" hidden>
+      <span id="items-left" class="items-left"></span>
+      <button type="button" id="clear-completed" class="btn btn-danger" aria-label="Clear completed items">
+        Clear Completed
+      </button>
     </footer>
+
+    <!-- Visually-hidden live region for screen-reader announcements -->
+    <div id="status" role="status" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
   </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
