@@ -2,39 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>jga-os</title>
+  <title>jga-os — Business in a Box</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="desktop">
-    <header class="top-bar">
-      <div class="logo">jga-os</div>
-      <div class="top-actions">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-      </div>
-    </header>
 
-    <main class="main-area">
-      <section class="dock">
-        <button class="dock-icon active">Home</button>
-        <button class="dock-icon">About</button>
-        <button class="dock-icon">Apps</button>
-      </section>
+<!-- Desktop -->
+<div id="desktop">
 
-      <section class="window">
-        <h1>Welcome to jga-os</h1>
-        <p>A minimal web desktop by jaysgraphicarts-ai.</p>
-        <p>Edit this text to make it your own OS concept.</p>
-      </section>
-    </main>
-
-    <footer class="taskbar">
-      <span class="taskbar-title">jga-os</span>
-      <span class="taskbar-status">Ready</span>
-    </footer>
+  <!-- Desktop Icons -->
+  <div id="desktop-icons">
+    <div class="desktop-icon" data-app="notes">
+      <div class="icon-img">📝</div>
+      <span>Notes</span>
+    </div>
+    <div class="desktop-icon" data-app="todo">
+      <div class="icon-img">✅</div>
+      <span>Todo</span>
+    </div>
+    <div class="desktop-icon" data-app="calendar">
+      <div class="icon-img">📅</div>
+      <span>Calendar</span>
+    </div>
+    <div class="desktop-icon" data-app="calculator">
+      <div class="icon-img">🔢</div>
+      <span>Calculator</span>
+    </div>
+    <div class="desktop-icon" data-app="files">
+      <div class="icon-img">📁</div>
+      <span>Files</span>
+    </div>
+    <div class="desktop-icon" data-app="browser">
+      <div class="icon-img">🌐</div>
+      <span>Browser</span>
+    </div>
+    <div class="desktop-icon" data-app="contacts">
+      <div class="icon-img">👥</div>
+      <span>Contacts</span>
+    </div>
+    <div class="desktop-icon" data-app="settings">
+      <div class="icon-img">⚙️</div>
+      <span>Settings</span>
+    </div>
   </div>
+
+  <!-- Window container -->
+  <div id="window-layer"></div>
+
+  <!-- Context Menu -->
+  <div id="context-menu">
+    <div class="ctx-item" data-action="new-note">📝 New Note</div>
+    <div class="ctx-item" data-action="new-todo">✅ New Todo</div>
+    <div class="ctx-separator"></div>
+    <div class="ctx-item" data-action="settings">⚙️ Settings</div>
+    <div class="ctx-item" data-action="about">ℹ️ About jga-os</div>
+  </div>
+
+  <!-- Taskbar -->
+  <div id="taskbar">
+    <button id="start-btn" title="Apps">⊞ jga-os</button>
+    <div id="taskbar-apps"></div>
+    <div id="taskbar-right">
+      <span id="taskbar-clock"></span>
+    </div>
+  </div>
+
+  <!-- Start Menu -->
+  <div id="start-menu">
+    <div class="start-header">
+      <span>jga-os</span>
+      <small>Business in a Box</small>
+    </div>
+    <div class="start-grid">
+      <button class="start-app" data-app="notes">📝<br>Notes</button>
+      <button class="start-app" data-app="todo">✅<br>Todo</button>
+      <button class="start-app" data-app="calendar">📅<br>Calendar</button>
+      <button class="start-app" data-app="calculator">🔢<br>Calc</button>
+      <button class="start-app" data-app="files">📁<br>Files</button>
+      <button class="start-app" data-app="browser">🌐<br>Browser</button>
+      <button class="start-app" data-app="contacts">👥<br>Contacts</button>
+      <button class="start-app" data-app="settings">⚙️<br>Settings</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
