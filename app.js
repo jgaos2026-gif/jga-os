@@ -331,24 +331,30 @@ class JgaOS {
 
 /* ─────────────────────────────────────────────── browser boot ── */
 
-if (typeof window !== 'undefined' && typeof document !== 'undefined' && !window.__JGA_TEST__) {
-  document.addEventListener('DOMContentLoaded', () => {
-    const os = new JgaOS({
-      dockEl: document.querySelector('.dock'),
-      windowEl: document.querySelector('.window'),
-      statusEl: document.querySelector('.taskbar-status'),
-      clockEl: document.querySelector('.taskbar-clock'),
-      notifEl: document.querySelector('.notifications'),
-    });
-
-    // Boot to Home
-    os.launch('home');
-    window.__jgaos = os;
+/**
+ * Boot the OS when running in a real browser.
+ * Exported separately so tests can import modules without triggering boot.
+ */
+function bootJgaOS() {
+  const os = new JgaOS({
+    dockEl: document.querySelector('.dock'),
+    windowEl: document.querySelector('.window'),
+    statusEl: document.querySelector('.taskbar-status'),
+    clockEl: document.querySelector('.taskbar-clock'),
+    notifEl: document.querySelector('.notifications'),
   });
+
+  // Boot to Home
+  os.launch('home');
+  window.__jgaos = os;
+}
+
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', bootJgaOS);
 }
 
 /* ─────────────────────────────────────────────────── exports ── */
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { DockManager, WindowManager, AppRegistry, TaskbarManager, NotificationManager, JgaOS };
+  module.exports = { DockManager, WindowManager, AppRegistry, TaskbarManager, NotificationManager, JgaOS, bootJgaOS };
 }

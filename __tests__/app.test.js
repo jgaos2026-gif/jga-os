@@ -6,10 +6,6 @@
 
 'use strict';
 
-// Prevent the browser boot code from running inside Jest
-global.window = global.window || {};
-global.window.__JGA_TEST__ = true;
-
 const {
   DockManager,
   WindowManager,
@@ -17,6 +13,7 @@ const {
   TaskbarManager,
   NotificationManager,
   JgaOS,
+  bootJgaOS,
 } = require('../app.js');
 
 /* ─────────────────────────────────────── helpers ── */
@@ -361,12 +358,31 @@ describe('TaskbarManager', () => {
     it('updates clock text after one second', () => {
       const clockEl = makeClock();
       const tm = new TaskbarManager(makeStatus(), clockEl);
+
+      // Fix Date to a known time, then advance past a minute boundary
+      const baseTime = new Date('2026-01-01T00:00:50.000Z').getTime();
+      jest.spyOn(Date, 'now').mockReturnValue(baseTime);
+      const RealDate = global.Date;
+      jest.spyOn(global, 'Date').mockImplementation((arg) =>
+        arg === undefined ? new RealDate(baseTime) : new RealDate(arg),
+      );
+
       tm.startClock();
       const before = clockEl.textContent;
-      jest.advanceTimersByTime(61000); // advance past a minute change
-      // text could be the same within the same minute, but should still be defined
+
+      // Advance 15 s so the minute rolls over (50s → 05s of next minute)
+      const laterTime = baseTime + 15_000;
+      global.Date.mockImplementation((arg) =>
+        arg === undefined ? new RealDate(laterTime) : new RealDate(arg),
+      );
+      jest.advanceTimersByTime(15_000);
+
       expect(clockEl.textContent).toBeDefined();
+      expect(typeof clockEl.textContent).toBe('string');
+      expect(clockEl.textContent).not.toBe(before);
+
       tm.stopClock();
+      jest.restoreAllMocks();
     });
 
     it('does not start a second interval if already running', () => {
