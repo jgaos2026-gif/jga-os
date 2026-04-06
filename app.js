@@ -169,7 +169,7 @@
     if (type === 'eq') {
       try {
         // Safe eval: only allow digits, operators, dots, parens
-        if (!/^[\d+\-*/.() ]+$/.test(calcExpr)) throw new Error('Invalid');
+        if (!/^[\d+\-*/.()]+$/.test(calcExpr)) throw new Error('Invalid');
         // eslint-disable-next-line no-new-func
         const result = Function(`'use strict'; return (${calcExpr})`)();
         calcExpr = String(result);
@@ -296,7 +296,7 @@
   // Background
   qsa('#bg-toggle .btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      qsa('#bg-toggle .btn').forEach(b => b.classList.replace('btn', 'btn') && b.classList.remove('active') && b.classList.add('btn-ghost'));
+      qsa('#bg-toggle .btn').forEach(b => { b.classList.remove('active'); b.classList.add('btn-ghost'); });
       btn.classList.remove('btn-ghost');
       btn.classList.add('active');
       document.body.classList.toggle('bg-darker', btn.dataset.bg === 'darker');
