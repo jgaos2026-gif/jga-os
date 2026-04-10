@@ -232,7 +232,6 @@
       }
       if (newText !== todo.text) {
         editTodo(todo.id, newText);
-        todo.text = newText;
         span.textContent = newText;
         checkbox.setAttribute('aria-label', 'Mark "' + newText + '" as ' + (todo.completed ? 'incomplete' : 'complete'));
         delBtn.setAttribute('aria-label', 'Delete "' + newText + '"');
