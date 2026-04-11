@@ -170,6 +170,15 @@
     renderFooter();
   }
 
+  /* ── Edit operation ──────────────────────────────────────── */
+  function editTodo(id, newText) {
+    const todo = todos.find(function (t) { return t.id === id; });
+    if (todo) {
+      todo.text = newText;
+      saveTodos();
+    }
+  }
+
   function createTodoElement(todo) {
     const li = document.createElement('li');
     li.className = 'todo-item' + (todo.completed ? ' completed' : '');
@@ -188,6 +197,71 @@
     const span = document.createElement('span');
     span.className = 'todo-text';
     span.textContent = todo.text;
+    span.setAttribute('title', 'Double-click to edit');
+
+    const editInput = document.createElement('input');
+    editInput.type = 'text';
+    editInput.className = 'todo-edit-input';
+    editInput.maxLength = 200;
+    editInput.setAttribute('aria-label', 'Edit "' + todo.text + '"');
+    editInput.hidden = true;
+
+    let isEditing = false;
+
+    function startEditing() {
+      if (isEditing) return;
+      isEditing = true;
+      span.hidden = true;
+      editInput.hidden = false;
+      editInput.value = todo.text;
+      li.classList.add('editing');
+      editInput.focus();
+      editInput.select();
+    }
+
+    function commitEdit() {
+      if (!isEditing) return;
+      isEditing = false;
+      const newText = editInput.value.trim();
+      li.classList.remove('editing');
+      if (!newText) {
+        // Empty text — cancel and keep original
+        span.hidden = false;
+        editInput.hidden = true;
+        return;
+      }
+      if (newText !== todo.text) {
+        editTodo(todo.id, newText);
+        span.textContent = newText;
+        checkbox.setAttribute('aria-label', 'Mark "' + newText + '" as ' + (todo.completed ? 'incomplete' : 'complete'));
+        delBtn.setAttribute('aria-label', 'Delete "' + newText + '"');
+        editInput.setAttribute('aria-label', 'Edit "' + newText + '"');
+        announce('"' + newText + '" updated.');
+      }
+      span.hidden = false;
+      editInput.hidden = true;
+    }
+
+    function cancelEdit() {
+      if (!isEditing) return;
+      isEditing = false;
+      li.classList.remove('editing');
+      span.hidden = false;
+      editInput.hidden = true;
+    }
+
+    span.addEventListener('dblclick', startEditing);
+
+    editInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        commitEdit();
+      } else if (e.key === 'Escape') {
+        cancelEdit();
+      }
+    });
+
+    editInput.addEventListener('blur', commitEdit);
 
     const delBtn = document.createElement('button');
     delBtn.type = 'button';
@@ -226,6 +300,7 @@
 
     li.appendChild(checkbox);
     li.appendChild(span);
+    li.appendChild(editInput);
     li.appendChild(delBtn);
 
     return li;

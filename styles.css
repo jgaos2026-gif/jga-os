@@ -293,6 +293,18 @@ header h1 {
   outline-offset: 2px;
 }
 
+/* ---- Todo item edit input ---- */
+.todo-edit-input {
+  flex: 1;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius);
+  outline: none;
+  color: var(--color-text);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
 /* ---- Footer ---- */
 .footer {
   display: flex;
